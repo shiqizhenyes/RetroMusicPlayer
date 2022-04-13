@@ -39,3 +39,4 @@ captures
 app/normal/release/
 /models/
 /app/release/
+retro.properties
