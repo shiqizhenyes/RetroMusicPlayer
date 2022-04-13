@@ -28,6 +28,7 @@ import code.name.monkey.retromusic.extensions.show
 import code.name.monkey.retromusic.extensions.whichFragment
 import code.name.monkey.retromusic.fragments.base.AbsPlayerFragment
 import code.name.monkey.retromusic.fragments.base.goToArtist
+import code.name.monkey.retromusic.fragments.other.CoverLyricsFragment
 import code.name.monkey.retromusic.fragments.player.PlayerAlbumCoverFragment
 import code.name.monkey.retromusic.glide.GlideApp
 import code.name.monkey.retromusic.glide.RetroGlideExtension
@@ -96,6 +97,7 @@ class FullPlayerFragment : AbsPlayerFragment(R.layout.fragment_full) {
         lastColor = color.backgroundColor
         binding.mask.backgroundTintList = ColorStateList.valueOf(color.backgroundColor)
         controlsFragment.setColor(color)
+        binding.coverLyrics.getFragment<CoverLyricsFragment>().setLyricsColor(color.primaryTextColor)
         libraryViewModel.updateColor(color.backgroundColor)
         ToolbarContentTintHelper.colorizeToolbar(binding.playerToolbar, Color.WHITE, activity)
     }

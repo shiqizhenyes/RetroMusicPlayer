@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
+import androidx.annotation.ColorInt
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.preference.PreferenceManager
@@ -27,7 +28,7 @@ import org.jaudiotagger.audio.exceptions.CannotReadException
 import java.io.File
 import java.io.FileNotFoundException
 
-class CoverLyricsFragment : AbsMusicServiceFragment(R.layout.fragment_cover_lyrics),
+open class CoverLyricsFragment : AbsMusicServiceFragment(R.layout.fragment_cover_lyrics),
     MusicProgressViewUpdateHelper.Callback, SharedPreferences.OnSharedPreferenceChangeListener {
     private var progressViewUpdateHelper: MusicProgressViewUpdateHelper? = null
     private var _binding: FragmentCoverLyricsBinding? = null
@@ -81,6 +82,11 @@ class CoverLyricsFragment : AbsMusicServiceFragment(R.layout.fragment_cover_lyri
         if (PreferenceUtil.showLyrics) {
             updateLyrics()
         }
+    }
+
+    open fun setLyricsColor(@ColorInt color: Int) {
+        lyricsLine1.setTextColor(color)
+        lyricsLine2.setTextColor(color)
     }
 
     private fun updateLyrics() {
