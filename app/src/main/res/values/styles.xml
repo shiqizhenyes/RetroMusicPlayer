@@ -224,12 +224,22 @@
         <item name="android:windowSoftInputMode">adjustResize|stateVisible</item>
     </style>
 
+    <style name="ShapeAppearanceOverlay.FloatingActionButton" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="CircleActionButton">
+        <item name="shapeAppearanceOverlay">
+            @style/ShapeAppearanceOverlay.FloatingActionButton
+        </item>
+    </style>
+
     <style name="HomeActionButton" parent="Widget.Material3.Button.ElevatedButton.Icon">
         <item name="android:paddingTop">16dp</item>
         <item name="android:paddingBottom">16dp</item>
         <item name="android:textColor">?attr/colorOnSurface</item>
         <item name="shapeAppearanceOverlay">
-            @style/ShapeAppearanceOverlay.Material3.FloatingActionButton
+            @style/ShapeAppearanceOverlay.FloatingActionButton
         </item>
         <item name="iconPadding">16dp</item>
         <item name="iconGravity">start</item>
