@@ -20,6 +20,7 @@
         app:layout_collapseMode="pin"
         app:navigationIcon="@drawable/ic_search"
         app:titleTextAppearance="@style/ToolbarTextAppearanceNormal"
+        app:layout_scrollFlags="scroll|enterAlways"
         tools:title="@string/songs" />
 
     <FrameLayout

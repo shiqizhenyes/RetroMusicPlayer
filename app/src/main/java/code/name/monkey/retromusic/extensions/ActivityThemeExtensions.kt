@@ -82,6 +82,10 @@ fun AppCompatActivity.setDrawBehindSystemBars() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         window.navigationBarColor = Color.TRANSPARENT
         window.statusBarColor = Color.TRANSPARENT
+        if (VersionUtils.hasP()) {
+            window.attributes.layoutInDisplayCutoutMode =
+                WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+        }
         if (VersionUtils.hasQ()) {
             window.isNavigationBarContrastEnforced = false
         }

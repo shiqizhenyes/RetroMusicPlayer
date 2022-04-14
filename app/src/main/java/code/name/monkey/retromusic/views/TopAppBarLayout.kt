@@ -9,6 +9,7 @@ import androidx.core.view.updateLayoutParams
 import code.name.monkey.retromusic.databinding.CollapsingAppbarLayoutBinding
 import code.name.monkey.retromusic.databinding.SimpleAppbarLayoutBinding
 import code.name.monkey.retromusic.util.PreferenceUtil
+import com.afollestad.materialdialogs.utils.MDUtil.updatePadding
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.AppBarLayout.LayoutParams.SCROLL_FLAG_NO_SCROLL
 import com.google.android.material.shape.MaterialShapeDrawable
@@ -20,21 +21,22 @@ class TopAppBarLayout @JvmOverloads constructor(
     defStyleAttr: Int = -1,
 ) : AppBarLayout(context, attrs, defStyleAttr) {
     private var simpleAppbarBinding: SimpleAppbarLayoutBinding? = null
-    private var collapsingAppbarBinding: CollapsingAppbarLayoutBinding? = null
+//    private var collapsingAppbarBinding: CollapsingAppbarLayoutBinding? = null
 
     val mode: AppBarMode = PreferenceUtil.appBarMode
 
     init {
-        if (mode == AppBarMode.COLLAPSING) {
-            collapsingAppbarBinding =
-                CollapsingAppbarLayoutBinding.inflate(LayoutInflater.from(context), this, true)
-            val isLandscape =
-                context.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
-            if (isLandscape) {
-                fitsSystemWindows = false
-            }
-
-        } else {
+//        if (mode == AppBarMode.COLLAPSING) {
+//            collapsingAppbarBinding =
+//                CollapsingAppbarLayoutBinding.inflate(LayoutInflater.from(context), this, true)
+//            val isLandscape =
+//                context.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+//            if (isLandscape) {
+//                fitsSystemWindows = false
+//            }
+////            collapsingAppbarBinding?.collapsingToolbarLayout?.setPadding(0,
+////                StatusBarView.getStatusBarHeight(resources), 0, 0)
+//        } else {
             simpleAppbarBinding =
                 SimpleAppbarLayoutBinding.inflate(LayoutInflater.from(context), this, true)
             simpleAppbarBinding?.root?.applyInsetter {
@@ -42,8 +44,9 @@ class TopAppBarLayout @JvmOverloads constructor(
                     padding(horizontal = true)
                 }
             }
+            simpleAppbarBinding?.toolbarContainer?.setPadding(0, StatusBarView.getStatusBarHeight(resources), 0, 0)
             statusBarForeground = MaterialShapeDrawable.createWithElevationOverlay(context)
-        }
+//        }
     }
 
     fun pinWhenScrolled() {
@@ -53,24 +56,26 @@ class TopAppBarLayout @JvmOverloads constructor(
     }
 
     val toolbar: Toolbar
-        get() = if (mode == AppBarMode.COLLAPSING) {
-            collapsingAppbarBinding?.toolbar!!
-        } else {
+        get() =
+//            if (mode == AppBarMode.COLLAPSING) {
+//            collapsingAppbarBinding?.toolbar!!
+//        } else {
             simpleAppbarBinding?.toolbar!!
-        }
+//        }
 
     var title: String
-        get() = if (mode == AppBarMode.COLLAPSING) {
-            collapsingAppbarBinding?.collapsingToolbarLayout?.title.toString()
-        } else {
+        get() =
+//            if (mode == AppBarMode.COLLAPSING) {
+//            collapsingAppbarBinding?.collapsingToolbarLayout?.title.toString()
+//        } else {
             simpleAppbarBinding?.appNameText?.text.toString()
-        }
+//        }
         set(value) {
-            if (mode == AppBarMode.COLLAPSING) {
-                collapsingAppbarBinding?.collapsingToolbarLayout?.title = value
-            } else {
+//            if (mode == AppBarMode.COLLAPSING) {
+//                collapsingAppbarBinding?.collapsingToolbarLayout?.title = value
+//            } else {
                 simpleAppbarBinding?.appNameText?.text = value
-            }
+//            }
         }
 
     enum class AppBarMode {
