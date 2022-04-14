@@ -83,6 +83,7 @@
             android:entryValues="@array/pref_appbar_mode_values"
             android:key="appbar_mode"
             android:layout="@layout/list_item_view"
+            app:isPreferenceVisible="false"
             android:negativeButtonText="@null"
             android:positiveButtonText="@null"
             android:title="@string/pref_title_appbar_mode" />
@@ -90,6 +91,7 @@
 
     <code.name.monkey.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory
         android:layout="@layout/preference_category_title"
+        app:isPreferenceVisible="false"
         android:title="@string/window">
 
         <code.name.monkey.appthemehelper.common.prefs.supportv7.ATESwitchPreference
